@@ -18,7 +18,7 @@ local function cleanUp()
         tmr = nil
     --end
 
-    -- If you are not sure the tmr object exists or want to take a defensive approach, you can check it with if clause
+    -- If you are not sure if the tmr object exists or want to take a defensive approach, you can check it with if clause
 end
 
 local function changeScene()

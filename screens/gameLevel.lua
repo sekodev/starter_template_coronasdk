@@ -18,11 +18,11 @@ local loopCount	= 0		-- Initialize loopCount
 
 local function changeText()
 	if ( loopCount == 120 ) then
-		nameDev.text = "Corona SDK"
+		nameDev.text = "Corona SDK"		-- Access the text of nameDev object and change it.
 	elseif ( loopCount == 240 ) then
-		nameDev.text = "Empty Project Template"
+		nameDev.text = "Empty Project Template"		-- Access the text of nameDev object and change it.
 	elseif ( loopCount == 360 ) then
-		nameDev.text = "By Serkan Aksit"
+		nameDev.text = "By Serkan Aksit"		-- Access the text of nameDev object and change it.
 		loopCount = 0
 	end
 
@@ -38,7 +38,16 @@ local function changeScene(event)
     elseif ( event.phase == "ended" or event.phase == "cancelled" ) then 		-- Check if the tap ended or cancelled
     	print "event ended"
     	
-        composer.gotoScene( "screens.mainMenu", "crossFade", 1000 )
+
+    	-- Define a variable <varName> to nameDev object for further access to transition. You can name it anything.
+    	-- This function will cause nameDev to change its X position and its alpha value in 1500 ms. 
+    	-- After it's done, onComplete will be called and it will change scene.
+    	-- For more information about transitions, please refer to the following documents
+    	-- http://docs.coronalabs.com/api/library/transition/index.html
+    	-- http://docs.coronalabs.com/guide/media/transitionLib/index.html 
+    	nameDev.trans = transition.to( nameDev, {time = 1500, alpha = 0, x = 0, onComplete = function ()
+    			composer.gotoScene( "screens.mainMenu", "crossFade", 1000 )
+    		end} )
     end
     return true 		-- To prevent more than one click
 
@@ -53,6 +62,13 @@ local function cleanUp()
 	Runtime:removeEventListener(changeText)
 
 	-- Corona SDK will remove the listeners that are attached to objects if the object is destroyed.
+
+	-- Remove the transition manually.
+	-- if ( nameDev.trans ) then
+	transition.cancel( nameDev.trans )
+	nameDev.trans = nil
+	-- end
+	-- If you are not sure if the nameDev.trans exists or want to take a defensive approach, you can check it with if clause
 end
 
 function scene:create( event )
