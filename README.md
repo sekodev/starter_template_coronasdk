@@ -1,6 +1,6 @@
-# Empty Project Template for Corona SDK
+# Empty Project Template for Corona SDK Starters
 
-This is an empty project template for Corona SDK explaining some of the basic concepts and providing an example project organization.
+This is an empty project template for Corona SDK starters, explaining some of the basic concepts and providing an example project organization.
 
 Some of the basic concepts included and explained in this template are:
 - Basic Composer and Widget functions
